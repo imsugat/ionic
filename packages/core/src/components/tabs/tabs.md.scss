@@ -132,7 +132,7 @@ $tabs-md-tab-icon-transition:                 transform .3s ease-in-out !default
 $tabs-md-tab-icon-size:                       2.4rem !default;
 
 
-.tabs-md .tabbar {
+.tabs-md ion-tab-bar {
   background: $tabs-md-background;
 }
 
@@ -147,12 +147,16 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 
   font-weight: $tabs-md-tab-font-weight;
   color: $tabs-md-tab-text-color;
+
+  fill: $tabs-md-tab-icon-color;
 }
 
 .tabs-md .tab-button[aria-selected=true] {
   @include padding($tabs-md-tab-padding-active-top, $tabs-md-tab-padding-active-end, $tabs-md-tab-padding-active-bottom, $tabs-md-tab-padding-active-start);
 
   color: $tabs-md-tab-text-color-active;
+
+  fill: $tabs-md-tab-icon-color-active;
 }
 
 
@@ -196,8 +200,6 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 
   font-size: $tabs-md-tab-icon-size;
 
-  color: $tabs-md-tab-icon-color;
-
   transition: $tabs-md-tab-icon-transition;
 }
 
@@ -235,51 +237,26 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 }
 
 
-// Material Design Tab Highlight
-// --------------------------------------------------
-
-.tabs-md[tabsHighlight=true] .tab-highlight {
-  @include position(null, null, 0, 0);
-  @include transform-origin(0, 0);
-
-  position: absolute;
-
-  display: block;
-
-  width: 1px;
-  height: 2px;
-
-  background: $tabs-md-tab-color-active;
-  transform: translateZ(0);
-}
-
-.tabs-md[tabsHighlight=true] .tab-highlight.animate {
-  transition-duration: 300ms;
-}
-
-.tabs-md[tabsHighlight=true][tabsPlacement=bottom] > .tabbar > .tab-highlight {
-  top: 0;
-}
-
-
 // Material Design Tabs Color Mixin
 // --------------------------------------------------
 
 @mixin tabbar-md($color-name, $color-base, $color-contrast) {
 
-  .tabs-md-#{$color-name} .tabbar {
+  .tabs-md-#{$color-name} ion-tab-bar {
     background-color: $color-base;
   }
 
-  .tabs-md-#{$color-name} .tab-button,
-  .tabs-md-#{$color-name} .tab-button-icon {
+  .tabs-md-#{$color-name} .tab-button {
     color: rgba($color-contrast, $tabs-md-tab-opacity);
+
+    fill: rgba($color-contrast, $tabs-md-tab-opacity);
   }
 
   .tabs-md-#{$color-name} .tab-button:hover:not(.disable-hover),
-  .tabs-md-#{$color-name} .tab-button[aria-selected=true],
-  .tabs-md-#{$color-name} .tab-button[aria-selected=true] .tab-button-icon {
+  .tabs-md-#{$color-name} .tab-button[aria-selected=true] {
     color: $color-contrast;
+
+    fill: $color-contrast;
   }
 
   .tabs-md-#{$color-name}[tabsHighlight=true] .tab-highlight {
@@ -294,4 +271,8 @@ $tabs-md-tab-icon-size:                       2.4rem !default;
 
 @each $color-name, $color-base, $color-contrast in get-colors($colors-md) {
   @include tabbar-md($color-name, $color-base, $color-contrast);
+}
+
+ion-tab-highlight  {
+  background: $tabs-md-tab-color-active;
 }

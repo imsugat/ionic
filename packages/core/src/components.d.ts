@@ -1751,6 +1751,7 @@ declare global {
           canGoBack?: any,
           canSwipeBack?: any,
           getFirstView?: any,
+          resize?: any,
           root?: any,
           delegate?: any
       }
@@ -2807,10 +2808,11 @@ declare global {
           mode?: string,
           color?: string,
         
+          placement?: string,
           tabs?: any,
-          onTabSelected?: any,
-          selectedIndex?: number,
-          tabsLayout?: string
+          selectedTab?: any,
+          layout?: string,
+          highlight?: boolean
       }
   }
 }
@@ -2840,10 +2842,8 @@ declare global {
           mode?: string,
           color?: string,
         
-          tab?: any,
-          layout?: string,
-          selectedIndex?: number,
-          index?: number
+          selected?: boolean,
+          tab?: any
       }
   }
 }
@@ -2873,6 +2873,7 @@ declare global {
           mode?: string,
           color?: string,
         
+          selectedIndex?: number
       }
   }
 }
@@ -2902,16 +2903,20 @@ declare global {
           mode?: string,
           color?: string,
         
-          root?: string,
+          setId?: any,
+          resize?: any,
+          goToRoot?: any,
+          root?: any,
           rootParams?: any,
-          tabTitle?: string,
-          tabIcon?: string,
-          tabBadge?: string,
-          tabBadgeStyle?: string,
+          tabUrlPath?: string,
+          title?: string,
+          icon?: string,
+          badge?: string,
+          badgeStyle?: string,
           enabled?: boolean,
-          shown?: boolean,
+          show?: boolean,
           tabsHideOnSubPages?: boolean,
-          onSelected?: any
+          selected?: boolean
       }
   }
 }
@@ -2941,10 +2946,15 @@ declare global {
           mode?: string,
           color?: string,
         
+          getByIndex?: any,
+          getSelected?: any,
+          getIndex?: any,
+          getTabs?: any,
+          tabbarHidden?: boolean,
+          name?: string,
           tabsLayout?: string,
           tabsPlacement?: string,
-          tabsHighlight?: boolean,
-          ionChange?: any
+          tabsHighlight?: boolean
       }
   }
 }

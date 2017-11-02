@@ -23,7 +23,7 @@ $tabs-ios-tab-padding-start:        $tabs-ios-tab-padding-end !default;
 $tabs-ios-tab-max-width:            240px !default;
 
 /// @prop - Minimum height of the tab button
-$tabs-ios-tab-min-height:           49px !default;
+$tabs-ios-tab-height:               50px !default;
 
 /// @prop - Text color of the inactive tab button
 $tabs-ios-tab-text-color:           $tabs-ios-tab-color-inactive !default;
@@ -44,14 +44,18 @@ $tabs-ios-tab-font-size:            10px !default;
 $tabs-ios-tab-icon-size:            30px !default;
 
 
-.tabs-ios .tabbar {
+.tabs-ios ion-tab-bar {
   justify-content: center;
+
+  height: $tabs-ios-tab-height;
 
   border-top: $tabs-ios-border;
   background: $tabs-ios-background;
+
+  contain: strict;
 }
 
-.tabs-ios[tabsPlacement=top] .tabbar {
+.tabs-ios[tabsPlacement=top] ion-tab-bar {
   border-top: 0;
   border-bottom: $tabs-ios-border;
 }
@@ -60,19 +64,19 @@ $tabs-ios-tab-icon-size:            30px !default;
   @include padding($tabs-ios-tab-padding-top, $tabs-ios-tab-padding-end, $tabs-ios-tab-padding-bottom, $tabs-ios-tab-padding-start);
 
   max-width: $tabs-ios-tab-max-width;
-  min-height: $tabs-ios-tab-min-height;
+  min-height: 100%;
 
   font-size: $tabs-ios-tab-font-size;
   color: $tabs-ios-tab-text-color;
+
+  fill: $tabs-ios-tab-icon-color;
 }
 
 .tabs-ios .tab-button:hover:not(.disable-hover),
 .tabs-ios .tab-button[aria-selected=true] {
   color: $tabs-ios-tab-text-color-active;
-}
 
-.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
-  color: $tabs-ios-tab-icon-color-active;
+  fill: $tabs-ios-tab-icon-color-active;
 }
 
 .tabs-ios .tab-button-text {
@@ -92,8 +96,6 @@ $tabs-ios-tab-icon-size:            30px !default;
   height: $tabs-ios-tab-icon-size;
 
   font-size: $tabs-ios-tab-icon-size;
-
-  color: $tabs-ios-tab-icon-color;
 }
 
 .tabs-ios .tab-button-icon::before {
@@ -114,10 +116,10 @@ $tabs-ios-tab-icon-size:            30px !default;
   font-size: 24px;
 }
 
-.tabs-ios[tabsLayout=icon-hide] .tab-button,
-.tabs-ios .tab-button.has-title-only {
-  min-height: $tabs-ios-tab-min-height - 8;
-}
+// .tabs-ios[tabsLayout=icon-hide] .tab-button,
+// .tabs-ios .tab-button.has-title-only {
+//   min-height: $tabs-ios-tab-min-height - 8;
+// }
 
 .tabs-ios[tabsLayout=icon-hide] .tab-button .tab-button-text,
 .tabs-ios .tab-button.has-title-only .tab-button-text {
@@ -127,10 +129,10 @@ $tabs-ios-tab-icon-size:            30px !default;
   line-height: 1.1;
 }
 
-.tabs-ios[tabsLayout=title-hide] .tab-button,
-.tabs-ios .tab-button.icon-only {
-  min-height: $tabs-ios-tab-min-height - 8;
-}
+// .tabs-ios[tabsLayout=title-hide] .tab-button,
+// .tabs-ios .tab-button.icon-only {
+//   min-height: $tabs-ios-tab-min-height - 8;
+// }
 
 
 // iOS Tabbar Color Mixin
@@ -138,23 +140,27 @@ $tabs-ios-tab-icon-size:            30px !default;
 
 @mixin tabbar-ios($color-name, $color-base, $color-contrast) {
 
-  .tabs-ios-#{$color-name} .tabbar {
+  .tabs-ios-#{$color-name} ion-tab-bar {
     border-color: darken($color-base, 10%);
     background-color: $color-base;
   }
 
-  .tabs-ios-#{$color-name} .tab-button,
-  .tabs-ios-#{$color-name} .tab-button-icon,
-  .tabs-ios-#{$color-name} .tab-button:hover:not(.disable-hover),
-  .tabs-ios-#{$color-name} .tab-button:hover:not(.disable-hover) .tab-button-icon {
+  .tabs-ios-#{$color-name} .tab-button {
     color: rgba($color-contrast, .7);
+
+    fill: rgba($color-contrast, .7);
   }
 
-  .tabs-ios-#{$color-name} .tab-button[aria-selected=true],
-  .tabs-ios-#{$color-name} .tab-button[aria-selected=true] .tab-button-icon {
+  .tabs-ios-#{$color-name} .tab-button[aria-selected=true] {
     color: $color-contrast;
+
+    fill: $color-contrast;
   }
 
+}
+
+ion-tab-highlight  {
+  background: $tabs-ios-tab-color-active;
 }
 
 

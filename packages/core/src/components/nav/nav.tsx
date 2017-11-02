@@ -118,10 +118,17 @@ export class IonNav implements Nav {
     return getFirstView(this);
   }
 
+  @Method()
+  resize() {
+    console.log('resize content');
+  }
+
   @Listen('navInit')
   navInitialized(event: CustomEvent) {
     navInitializedImpl(this, event);
   }
+
+
 
 
   protected render() {

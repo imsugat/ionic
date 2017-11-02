@@ -224,7 +224,6 @@ sub {
 
 ion-app,
 ion-nav,
-ion-tab,
 ion-tabs,
 ion-page,
 .ion-page {
@@ -240,14 +239,18 @@ ion-page,
   contain: strict;
 }
 
-ion-nav,
-ion-tab,
 ion-tabs {
-  overflow: hidden;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ion-tab {
+  position: relative;
   display: none;
+
+  flex: 1;
 }
 
 ion-tab.show-tab {

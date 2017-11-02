@@ -1,33 +1,20 @@
 @import "../../themes/ionic.globals";
-
 // Tabs
 // --------------------------------------------------
 
-.tabbar {
-  @include position(null, null, 0, 0);
-
-  position: absolute;
+ion-tab-bar {
+  position: relative;
 
   z-index: $z-index-toolbar;
   display: flex;
 
+  order: 1;
+
   width: 100%;
-
-  // default to hidden until ready
-  //opacity: 0;
 }
 
-.tabbar-hidden .tabbar {
-  display: none;
-}
-
-.tabbar.show-tabbar {
-  opacity: 1;
-}
-
-[tabsPlacement=top] > .tabbar {
-  top: 0;
-  bottom: auto;
+ion-tab-bar.placement-top {
+  order: -1;
 }
 
 .tab-button {
@@ -71,7 +58,7 @@
 
 .tab-button-text,
 .tab-button-icon {
-  //display: none;
+  display: none;
   overflow: hidden;
 
   align-self: center;
@@ -145,3 +132,33 @@
 [tabsLayout=icon-end] .tab-badge {
   @include position(null, calc(50% - 50px), null, null);
 }
+
+// Material Design Tab Highlight
+// --------------------------------------------------
+
+ion-tab-highlight {
+  @include position(null, null, 0, 0);
+  @include transform-origin(0, 0);
+
+  position: absolute;
+
+  display: block;
+
+  width: 1px;
+  height: 2px;
+
+  transform: translateZ(0);
+
+  &.animated {
+    transition-duration: 300ms;
+  }
+}
+
+ion-tab-bar.placement-top > ion-tab-highlight {
+  bottom: 0;
+}
+
+ion-tab-bar.placement-bottom > ion-tab-highlight {
+  top: 0;
+}
+
